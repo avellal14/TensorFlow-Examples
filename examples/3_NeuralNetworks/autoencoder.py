@@ -19,6 +19,7 @@ from __future__ import division, print_function, absolute_import
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
@@ -133,10 +134,12 @@ with tf.Session() as sess:
 
     print("Original Images")
     plt.figure(figsize=(n, n))
-    plt.imshow(canvas_orig, origin="upper", cmap="gray")
-    plt.show()
+    # plt.imshow(canvas_orig, origin="upper", cmap="gray")
+    # plt.show()
+    plt.savefig(str(Path.home())+'/example_code/original_images.png', dpi=200)
 
     print("Reconstructed Images")
     plt.figure(figsize=(n, n))
-    plt.imshow(canvas_recon, origin="upper", cmap="gray")
-    plt.show()
+    # plt.imshow(canvas_recon, origin="upper", cmap="gray")
+    # plt.show()
+    plt.savefig(str(Path.home())+'/example_code/reconstructed_images.png', dpi=200)

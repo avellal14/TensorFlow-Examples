@@ -137,10 +137,10 @@ with tf.Session() as sess:
             plt.figure(figsize=(n, n))
             # plt.imshow(canvas_orig, origin="upper", cmap="gray")
             # plt.show()
-            plt.imsave(str(Path.home())+'/example_code/original_images.png', canvas_orig, origin="upper", cmap="gray")
+            plt.imsave(str(Path.home())+'/example_code_adithya/original_images.png', canvas_orig, origin="upper", cmap="gray")
 
             print("Reconstructed Images")
             plt.figure(figsize=(n, n))
             # plt.imshow(canvas_recon, origin="upper", cmap="gray")
             # plt.show()
-            plt.imsave(str(Path.home())+'/example_code/reconstructed_images.png', canvas_recon, origin="upper", cmap="gray")
+            plt.imsave(str(Path.home())+'/example_code_adithya/reconstructed_images.png', canvas_recon, origin="upper", cmap="gray")

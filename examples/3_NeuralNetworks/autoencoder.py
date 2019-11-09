@@ -110,36 +110,37 @@ with tf.Session() as sess:
         if i % display_step == 0 or i == 1:
             print('Step %i: Minibatch Loss: %f' % (i, l))
 
-    # Testing
-    # Encode and decode images from test set and visualize their reconstruction.
-    n = 4
-    canvas_orig = np.empty((28 * n, 28 * n))
-    canvas_recon = np.empty((28 * n, 28 * n))
-    for i in range(n):
-        # MNIST test set
-        batch_x, _ = mnist.test.next_batch(n)
-        # Encode and decode the digit image
-        g = sess.run(decoder_op, feed_dict={X: batch_x})
+        if i % 5000 == 0:
+            # Testing
+            # Encode and decode images from test set and visualize their reconstruction.
+            n = 4
+            canvas_orig = np.empty((28 * n, 28 * n))
+            canvas_recon = np.empty((28 * n, 28 * n))
+            for i in range(n):
+                # MNIST test set
+                batch_x, _ = mnist.test.next_batch(n)
+                # Encode and decode the digit image
+                g = sess.run(decoder_op, feed_dict={X: batch_x})
 
-        # Display original images
-        for j in range(n):
-            # Draw the original digits
-            canvas_orig[i * 28:(i + 1) * 28, j * 28:(j + 1) * 28] = \
-                batch_x[j].reshape([28, 28])
-        # Display reconstructed images
-        for j in range(n):
-            # Draw the reconstructed digits
-            canvas_recon[i * 28:(i + 1) * 28, j * 28:(j + 1) * 28] = \
-                g[j].reshape([28, 28])
+                # Display original images
+                for j in range(n):
+                    # Draw the original digits
+                    canvas_orig[i * 28:(i + 1) * 28, j * 28:(j + 1) * 28] = \
+                        batch_x[j].reshape([28, 28])
+                # Display reconstructed images
+                for j in range(n):
+                    # Draw the reconstructed digits
+                    canvas_recon[i * 28:(i + 1) * 28, j * 28:(j + 1) * 28] = \
+                        g[j].reshape([28, 28])
 
-    print("Original Images")
-    plt.figure(figsize=(n, n))
-    # plt.imshow(canvas_orig, origin="upper", cmap="gray")
-    # plt.show()
-    plt.imsave(str(Path.home())+'/example_code/original_images.png', canvas_orig, origin="upper", cmap="gray")
+            print("Original Images")
+            plt.figure(figsize=(n, n))
+            # plt.imshow(canvas_orig, origin="upper", cmap="gray")
+            # plt.show()
+            plt.imsave(str(Path.home())+'/example_code/original_images.png', canvas_orig, origin="upper", cmap="gray")
 
-    print("Reconstructed Images")
-    plt.figure(figsize=(n, n))
-    # plt.imshow(canvas_recon, origin="upper", cmap="gray")
-    # plt.show()
-    plt.imsave(str(Path.home())+'/example_code/reconstructed_images.png', canvas_recon, origin="upper", cmap="gray")
+            print("Reconstructed Images")
+            plt.figure(figsize=(n, n))
+            # plt.imshow(canvas_recon, origin="upper", cmap="gray")
+            # plt.show()
+            plt.imsave(str(Path.home())+'/example_code/reconstructed_images.png', canvas_recon, origin="upper", cmap="gray")
